@@ -1,23 +1,27 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
 
-function App(): JSX.Element {;
+import { NavigationContainer } from "@react-navigation/native";
+import { NativeBaseProvider } from "native-base";
+import { createStackNavigator } from "@react-navigation/stack";
+
+import AppNavigation from './src/navigation/AppNavigation';
+
+const Stack = createStackNavigator();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>HELLO!</Text>
-    </View>
+    <NavigationContainer>
+      <NativeBaseProvider>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="AppNavigation"
+            component={AppNavigation}
+            options={{ headerShown: false }}
+          />
+        </Stack.Navigator>
+      </NativeBaseProvider>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: 'red',
-    flex: 1
-  },
-});
 
 export default App;
